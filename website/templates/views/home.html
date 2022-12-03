@@ -3,6 +3,9 @@ style %}
 <style></style>
 {% endblock style %} {% block content %}
 <section class="main">code</section>
+{% if user %}
+  {{user}}
+{% endif %}
 {% endblock content %} {% block scripts %}
 <script
   type="text/javascript"
