@@ -7,14 +7,10 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(150), unique=True)
     password = db.Column(db.String(150))
-    name = db.Column(db.String(150))
-    gender = db.Column(db.String(10))
-    age = db.Column(db.Integer)
-    height = db.Column(db.Float)
-    weight = db.Column(db.Float)
-    cal_goal = db.Column(db.Float)
-    water_goal = db.Column(db.Integer)
-    entries = db.relationship("Entry", backref="entry", cascade="all,delete-orphan")
-    Water_entries = db.relationship(
-        "Water", backref="water", cascade="all,delete-orphan"
-    )
+    username = db.Column(db.String(150))
+    strategies = db.relationship("Strategy", backref="strategy", cascade="all,delete-orphan")
+
+class Strategy(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    legs = db.Column(db.String(500))
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
